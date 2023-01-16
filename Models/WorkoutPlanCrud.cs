@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace GymManagerApp.Models
 {
-    public class WorkoutPlan
+    public class WorkoutPlanCrud
     {
         public int Id { get; set; }
         public string Name { get; set; }
         public int TrainerId { get; set; }
         public Trainer Trainer { get; set; }
-        public ICollection<Workout> Workouts { get; set; } = new HashSet<Workout>();
+        public List<WorkoutCrud> SelectedWorkouts { get; set; } = new List<WorkoutCrud>();
     }
 }

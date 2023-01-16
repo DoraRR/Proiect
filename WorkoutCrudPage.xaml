@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymManagerApp.WorkoutCrudPage"
+             Title="WorkoutCrudPage">
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <Button x:Name="btnDelete" Text="Delete" BackgroundColor="Red" Grid.Column="1" MaximumWidthRequest="200" Clicked="OnDeleteButtonClicked" HorizontalOptions="End" />
+            <Entry Placeholder="Name" Margin="20" Text="{Binding Name}" HeightRequest="50" />
+            <Entry Placeholder="Description" Margin="20" Text="{Binding Description}" HeightRequest="50" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Text="Save" Grid.Column="0" MaximumWidthRequest="200" Clicked="OnSaveButtonClicked" />
+                <Button Text="Cancel" Grid.Column="1" MaximumWidthRequest="200" Clicked="OnCancelButtonClicked" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

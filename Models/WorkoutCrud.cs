@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace GymManagerApp.Models
 {
-    public class Workout
+    public class WorkoutCrud
     {
         public int Id { get; set; }
-        public string Name { get; set; }
-        public string AltName { get; set; }
-        public string Description { get; set; }
+        public string Name { get; set; } = string.Empty;
         public int Day { get; set; }
+        public bool Selected { get; set; }
     }
 }

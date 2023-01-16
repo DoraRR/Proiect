@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GymManagerApp.WorkoutPlansPage"
+             Title="Workout plans">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Create" Clicked="OnAddClicked" />
+    </ContentPage.ToolbarItems>
+    <ListView x:Name="listView"
+            Margin="20"
+            ItemSelected="listView_ItemSelected">
+        <ListView.ItemTemplate>
+            <DataTemplate>
+                <ViewCell>
+                    <StackLayout Margin="20,0,0,0" Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                        <StackLayout Orientation="Vertical" HorizontalOptions="Start">
+                            <Label Text="{Binding Name}" FontAttributes="Bold"  VerticalOptions="Start" />
+                            <ListView IsEnabled="False" ItemsSource="{Binding Workouts}" >
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <TextCell Text="{Binding AltName, StringFormat='Day {0}'}" Detail="{Binding Description}" />
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </StackLayout>
+                </ViewCell>
+            </DataTemplate>
+        </ListView.ItemTemplate>
+    </ListView>
+</ContentPage>
