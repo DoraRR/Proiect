@@ -1,0 +1,63 @@
+﻿@page
+@model GymManager.Pages.WorkoutPlans.EditModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<h4>WorkoutPlan</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="WorkoutPlan.Id" />
+            <div class="form-group">
+                <label asp-for="WorkoutPlan.Name" class="control-label"></label>
+                <input asp-for="WorkoutPlan.Name" class="form-control" />
+                <span asp-validation-for="WorkoutPlan.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">  
+                <div class="">
+                    <table>
+                        @{
+                            int index = 0;
+                            foreach (var workout in Model.SelectedWorkoutsList)
+                            {
+
+                                @:<tr>
+                                    <td>
+                                        <input type="hidden" name="selectedWorkouts.Index" value="@index" />
+                                        <input type="checkbox"
+                                            name="selectedWorkouts[@index].Id"
+                                            value="@workout.Id"
+                                            @(Html.Raw(workout.Selected ? "checked=\"checked\"" : "")) />
+                                            @workout.Name
+                                    </td>
+                                    <td>
+                                        Day: <input type="number" name="selectedWorkouts[@index].Day" value="@workout.Day" />
+                                    </td>
+                                @:</tr>
+
+                                index++;
+                            }
+                        }
+                    </table>
+                </div>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+                <a asp-page="./Index" class="btn btn-primary">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

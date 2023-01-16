@@ -1,0 +1,68 @@
+﻿@page
+@model GymManager.Pages.WorkoutPlans.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>
+    Index 
+    @if (User.IsInRole("Trainer"))
+    {
+    <a asp-page="Create" class="btn btn-primary">Create</a>
+    }
+</h1>
+
+<p>
+    
+</p>
+
+<form asp-page="./Index" method="get">
+    <div class="form-actions no-color">
+        <p>
+            <input type="text" name="searchQuery" value="@Model.Filter" />
+            <input type="submit" value="Search" class="btn btn-primary" />
+            <a asp-page="./Index" class="btn btn-primary">Clear</a>
+        </p>
+    </div>
+</form>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkoutPlan[0].Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.WorkoutPlan[0].Workouts)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.WorkoutPlan)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @{
+                        foreach (var workout in item.Workouts.OrderBy(x => x.Day))
+                        {
+                            @:<div>Day @(workout.Day): @(workout.Workout.Name)</div>
+                        }
+                    }
+                </td>
+                <td>
+                    @if (User.IsInRole("Trainer"))
+                    {
+                        <a asp-page="./Edit" asp-route-id="@item.Id" class="btn btn-primary">Edit</a>
+                        <a asp-page="./Delete" asp-route-id="@item.Id" class="btn btn-danger">Delete</a>
+                    }
+
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
